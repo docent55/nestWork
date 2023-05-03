@@ -17,7 +17,7 @@ export class UserService {
     };
 
     const userByEmail = await this.userRepository.findOne({
-      where: { email: createUserDto.username },
+      where: { email: createUserDto.email },
     });
 
     const userByUsername = await this.userRepository.findOne({
