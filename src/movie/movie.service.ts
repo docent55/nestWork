@@ -26,4 +26,14 @@ export class MovieService {
       },
     });
   }
+
+  async getFiveLastMovies() {
+    return await this.movieRepository.find({
+      relations: {
+        genres: true,
+      },
+      order: { id: 'DESC' },
+      take: 5,
+    });
+  }
 }

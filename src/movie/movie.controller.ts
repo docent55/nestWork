@@ -15,4 +15,9 @@ export class MovieController {
   async getMovies() {
     return await this.movieService.getAllMovies();
   }
+
+  @Get('lasts')
+  async getLastFive() {
+    return await this.movieService.getFiveLastMovies();
+  }
 }
