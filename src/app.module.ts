@@ -3,6 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { TaskModule } from './task/task.module';
+import { FileModule } from './file/file.module';
+import { MovieModule } from './movie/movie.module';
+import { GenreModule } from './genre/genre.module';
 
 @Module({
   imports: [
@@ -21,6 +25,10 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    TaskModule,
+    FileModule,
+    MovieModule,
+    GenreModule,
   ],
 })
 export class AppModule {}

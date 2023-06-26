@@ -1,5 +1,14 @@
 import * as bcrypt from 'bcrypt';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { TaskEntity } from 'src/task/task.entity';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'user' })
 export class UserEntity {
@@ -19,7 +28,14 @@ export class UserEntity {
   password: string;
 
   @BeforeInsert()
-  async hashPasword() {
+  async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
   }
+
+  @OneToMany(() => TaskEntity, (task) => task.creater)
+  createdTasks: TaskEntity[];
+
+  @ManyToMany(() => TaskEntity)
+  @JoinTable()
+  inWork: TaskEntity[];
 }
